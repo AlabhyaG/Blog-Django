@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<style>
+    /* Additional CSS for centering */
+    .center-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh; /* Adjust height as needed */
+    }
+    .container{
+        background-color: antiquewhite;
+    }
+</style>
+<div class="center-div">
+    <div class="row">
+    <form action="{% url 'delete-post' post.id%}" method="POST" class="form-control col-md-6 container"> 
+        {% csrf_token %}
+        <h3>Are you sure you want to delete this blog?</h3>
+        <div class="row p-3" >        
+        <input type="submit" value="Yes" class="btn btn-outline-warning btn-lg  mt-4 mb-2">
+        <br/>
+        <a href="{% url 'detail_blog' post.id%}" class="btn btn-outline-secondary btn-lg mb-2 ml-5 mr-5">Back</a>
+        </div>
+    </form>
+    </div>
+</div>
+{% endblock %}

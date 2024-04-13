@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title  %}
+Edit Blog
+{% endblock%}
+
+{% block content %}
+<style>
+    .heading{
+       text-align: center;
+       padding: 5px;
+       text-decoration: underline  ;
+    }
+    .container{
+        background-color: antiquewhite;
+    }
+</style>
+<h1 class="heading">Edit Post</h1>
+<div class="m-5">
+<form action="{% url 'edit-post' post.id %}" method="POST" class="form-control  container">
+{% csrf_token%}
+    {{postForm.as_p}}
+    <input type="submit" class="btn btn-primary btn-lg"value="Edit Post">
+</form>
+</div>
+{% endblock%}

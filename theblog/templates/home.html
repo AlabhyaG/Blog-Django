@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{% block title  %}
+Welcome to Blogs
+{% endblock%}
+
+{% block content%}
+<!-- displaying all post start -->
+<style>
+    .container{
+        background-color: antiquewhite;
+    }
+   
+</style>
+
+{%for p in all_post%}
+    <div class="card m-5 container  " id="post-card" >
+        <div class="card-header ">
+            <strong class="fs-1">{{p.title}}</strong>
+            <br>
+            <div class="row">
+                <div class="col fs-4"><small><strong>By - {{p.author|title}} </strong></small></div>
+                <div class="col-auto ml-auto"> {{p.date_created|date:"Y-m-d"}}</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{p.title_tag}}</h5>
+            <p class="card-text">{{p.body | slice:"210" }}</p>
+            <a href="{% url 'detail_blog' p.id %}" class="btn btn-primary">Read More</a>
+        </div>
+    </div>
+    <!-- display all post end -->
+    
+        {% endfor %}
+{% endblock %}

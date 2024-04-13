@@ -1,0 +1,42 @@
+
+
+
+{% extends 'base.html'%}
+{% block title  %}
+Detail Blog
+{% endblock%}
+{% block content%}
+<style>
+    .align{
+        text-align: justify;
+    }
+    .container{
+         background-color:beige;
+    }
+</style>
+<div class="m-5 container p-4" >
+    <div>
+        <div>
+            <h1 class="fs-1" >{{post.title}}</h1>      
+            <h5>{{post.title_tag}}</h5>
+               
+        </div>
+        <div class="row">
+            <div class="col"><strong>Written By:- {{post.author|upper}}</strong></div>
+            <div class="col-auto ml-auto">Last Updated: {{post.date_created|date:"Y-m-d"}}</div>
+           <br>
+            {% if user.is_authenticated and user.id == post.author.id %}
+                <div>
+                    <a href="{% url 'edit-post' post.id %} " class="btn btn-outline-warning btn-sm">Edit</a>
+                    <a href="{% url 'delete-post' post.id %} " class="btn btn-outline-danger btn-sm">Delete</a>
+                </div>
+            {% endif%} 
+        </div>
+        <hr>
+    </div>
+    <div>
+        <p class="align">{{post.body}}</p>
+    </div>
+    
+</div>
+{% endblock%}
